@@ -1,0 +1,22 @@
+s   - startup (0)
+l   - login (1)
+h   - Home (2)
+
+_A  - Applications (3)
+_SP - SillyOS Paint (4)
+_MS - Minesweaper (5)
+_PC - Pacman (6)
+_S_IDE - Silly Integrated Development Environment(Silly Programming Language or S-Language) (7)
+
+_s  - settings (8)
+_BC - Background Colour (9)
+_FC - Foreground Colour (10)
+_SE - Sound Effects (11)
+
+_BIOS - BIOS Settings (12)
+_CR   - Clear RAM (13)
+_RR   - Reboot ROM (14)
+_CS   - Clock Speed (15)
+
+
+

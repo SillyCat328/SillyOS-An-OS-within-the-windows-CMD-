@@ -2,7 +2,14 @@ s
 l
 h
 _A
+_PC
+_MS
+_SP
+h
+_s
+h
 _A
-_A
-_A
-_BIOS
+_MS
+_PC
+_S_IDE
+h

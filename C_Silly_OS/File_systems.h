@@ -15,7 +15,7 @@ void UIload(const char* F_UI){
     
     char UI[UI_BUFFER_SIZE];
 
-    while(fgets(UI, 225, pFile) != NULL) {
+    while(fgets(UI, UI_BUFFER_SIZE, pFile) != NULL) {
         printf("%s", UI);
     }
 

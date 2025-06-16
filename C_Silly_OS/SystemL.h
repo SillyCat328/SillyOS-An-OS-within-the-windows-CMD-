@@ -10,7 +10,7 @@
 #define ApplicationUI "Application.UI"
 #define SettingsUI "Settings.UI"
 #define BIOS_SettingsUI "BIOS_Settings.UI"
-
+//----------------------------------------------------------------------------------------//
 enum { // Unsigned int.
     START_UP,
     LOGIN_SCREEN,
@@ -22,18 +22,18 @@ enum { // Unsigned int.
 } typedef E_Scenes;
 unsigned int scenes = 0;
 E_Scenes Scene;
-
-static void            STARTUP(void); // Remove the static keyword from these functions, as it will interfere with memory.h
-static void        LOGINSCREEN(void);
-static void         HOMESCREEN(void);
-static void      _Applications(void);
-static void          _SETTINGS(void);
-static void     _BIOS_Settings(void);
+//----------------------------------------------------------------------------------------//
+void            STARTUP(void); // Remove the static keyword from these functions, as it will interfere with memory.h
+void        LOGINSCREEN(void);
+void         HOMESCREEN(void);
+void      _Applications(void);
+void          _SETTINGS(void);
+void     _BIOS_Settings(void);
 static int          basic_login(char password[]);
 void                TextLoad(char text[], unsigned int spaces, bool newline); // unsigned int size_of_text
 void                Console_ColourBuffer(char colour[]);
 
-
+//----------------------------------------------------------------------------------------//
 void screenRALF(){ // Screen Renderer.And.Logic.Function 
 
     // Screen Logic(rendering scenes/inputs)
@@ -64,10 +64,10 @@ void screenRALF(){ // Screen Renderer.And.Logic.Function
     
 }
 
-
+//----------------------------------------------------------------------------------------//
 void STARTUP(){ // Loaded to memory with: s 
     WriteToMem("s");
-    Sleep(2000);
+    Sleep(1000);
     //printf("Scene: %d", scenes);
     Sleep(2000); // Makes program sleep for 2 seconds.
     char S_OS[] = "Silly OS";
@@ -79,8 +79,9 @@ void STARTUP(){ // Loaded to memory with: s
     LOGINSCREEN();
 
 }
+//----------------------------------------------------------------------------------------//
 // TODO: Later make a full admin/user system.
-static void LOGINSCREEN(){ // Loaded to memory with: l 
+void LOGINSCREEN(){ // Loaded to memory with: l 
     r:
     WriteToMem("l");// Scene 1
     Console_ColourBuffer("1E");
@@ -99,8 +100,8 @@ static void LOGINSCREEN(){ // Loaded to memory with: l
         goto r;
     }
 }
-
-static void HOMESCREEN(){ // Loaded to memory with: h
+//----------------------------------------------------------------------------------------//
+void HOMESCREEN(){ // Loaded to memory with: h
     
     system("cls");
     WriteToMem("h"); 
@@ -117,17 +118,20 @@ static void HOMESCREEN(){ // Loaded to memory with: h
        scanf("%d", &x);
        switch (x)
        {
-       case 1:
+       case 1: 
             _Applications();
+            SystemIsRunning = false;
             break;
        case 2:
             _BIOS_Settings();
+            SystemIsRunning = false;
             break;
        case 3:
             _SETTINGS();
+            SystemIsRunning = false;
             break;
        case 4:
-            SystemIsRunning = false;
+            exit(0);
             break;
        default:
             break;
@@ -136,29 +140,117 @@ static void HOMESCREEN(){ // Loaded to memory with: h
 
     //_SETTINGS();  
 }
-
-static void _Applications(){
+//----------------------------------------------------------------------------------------//
+void _Applications(){
     system("cls");
     WriteToMem("_A");
 
     UIload(ApplicationUI);
-}
+    bool ApplicationsIsRunning = false;
 
-static void _SETTINGS(){ // Loaded to memory with: _s
+    while (!ApplicationsIsRunning)
+    {
+       int x;
+       printf("Input: ");
+       scanf("%d", &x);
+       switch (x)
+       {
+       case 1:
+           WriteToMem("_SP");
+            ApplicationsIsRunning = false;
+            break;
+       case 2:
+            WriteToMem("_MS");
+            ApplicationsIsRunning = false;
+            break;
+       case 3:
+            WriteToMem("_PC");
+            ApplicationsIsRunning = false;
+            break;
+       case 4:
+            WriteToMem("_S_IDE");
+            ApplicationsIsRunning = false;
+            break;
+       case 5:
+            HOMESCREEN();
+            ApplicationsIsRunning = false;
+            break;
+       default:
+            break;
+       }
+    }
+}
+//----------------------------------------------------------------------------------------//
+void _SETTINGS(){ // Loaded to memory with: _s
     system("cls");
     WriteToMem("_s");    
 
     UIload(SettingsUI);
-}
 
-static void _BIOS_Settings(){
+    bool _SETTINGSIsRunning = false;
+
+    while (!_SETTINGSIsRunning)
+    {
+       int x;
+       printf("Input: ");
+       scanf("%d", &x);
+       switch (x)
+       {
+       case 1:
+            WriteToMem("_BC");
+            break;
+       case 2:
+            WriteToMem("_FC");
+            break;
+       case 3:
+            WriteToMem("_SE");
+            break;
+       case 4:
+            HOMESCREEN();
+            _SETTINGSIsRunning = false;
+            break;
+
+       default:
+            break;
+       }
+    }
+}
+//----------------------------------------------------------------------------------------//
+void _BIOS_Settings(){
     system("cls");
     WriteToMem("_BIOS"); 
     
     UIload(BIOS_SettingsUI);
 
-}
+    bool _BIOSIsRunning = false;
 
+    while (!_BIOSIsRunning)
+    {
+       int x;
+       printf("Input: ");
+       scanf("%d", &x);
+       switch (x)
+       {
+       case 1:
+            WriteToMem("_CR");
+            break;
+       case 2:
+            WriteToMem("_RR");
+            break;
+       case 3:
+            WriteToMem("_CS");
+            break;
+       case 4:
+            HOMESCREEN();
+            _BIOSIsRunning = false;
+            break;
+       default:
+            break;
+       }
+    }
+
+}
+//----------------------------------------------------------------------------------------//
 void TextLoad(char text[], unsigned int spaces, bool newline){ // unsigned int size_of_text. Arrays turn into pointers. 
 
     // -- Allows spaces -- 
