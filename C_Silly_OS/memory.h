@@ -27,49 +27,49 @@ void CallFromMem(unsigned int MemNum){
     char MemFunctions[MemBuffer] = 
     {'s', 'l', 'h', // 0, 1, 2
         '_A', '_SP', '_MS', '_PC', '_S_IDE', // 3, 4, 5, 6, 7
-        '_s ', '_BC', '_FC', '_SE', // 8, 9, 10, 11
+        '_s', '_BC', '_FC', '_SE', // 8, 9, 10, 11
         '_BIOS', '_CR', '_RR', '_CS'}; // 12, 13, 14, 15
 
 
     switch (MemFunctions[MemNum])
     {
-    case  0:
+    case  's':
         STARTUP();
         break;
-    case 1:
+    case 'l':
         LOGINSCREEN();
         break;
-    case 2:
+    case 'h':
         HOMESCREEN();
         break;
-    case 3:
+    case '_A':
         _Applications();
         break;
-    case 4:
+    case '_SP':
         break;
-    case 5:
+    case '_MS':
         break;
-    case 6:
+    case '_PC':
         break;
-    case 7:
+    case '_S_IDE':
         break;
-    case 8:
+    case '_s':
         _SETTINGS();
         break;
-    case 9:
+    case '_BC':
         break;
-    case 10:
+    case '_FC':
         break;
-    case 11:
+    case '_SE':
         break;
-    case 12:
+    case '_BIOS':
         _BIOS_Settings();
         break;
-    case 13:
+    case '_CR':
         break;
-    case 14:
+    case '_RR':
         break;
-    case 15:
+    case '_CS':
         break;
     
     default:

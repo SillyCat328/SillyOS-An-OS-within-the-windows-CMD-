@@ -66,6 +66,7 @@ void screenRALF(){ // Screen Renderer.And.Logic.Function
 
 //----------------------------------------------------------------------------------------//
 void STARTUP(){ // Loaded to memory with: s 
+    system("cls");
     WriteToMem("s");
     Sleep(1000);
     //printf("Scene: %d", scenes);
@@ -198,6 +199,7 @@ void _SETTINGS(){ // Loaded to memory with: _s
        {
        case 1:
             WriteToMem("_BC");
+            CallFromMem(0);
             break;
        case 2:
             WriteToMem("_FC");
